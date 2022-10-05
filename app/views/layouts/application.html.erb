@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PostTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <div class="container">
+      <% if @current_user %>
+        <%= link_to("HOME", "/index") %>
+      <% else %>
+        <%= link_to("Top Pege", "/") %>
+      <% end %>
+      <% if @current_user %>
+        <li>
+          <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+        </li>
+        <li>
+          <%= link_to("ログアウト", "/logout", {method: "post"}) %>
+        </li>
+        <li>
+          <%= link_to("ユーザー一覧", "/users/index") %>
+        </li>
+        <li>
+          <%= link_to("ToDoリスト", "/lists/index") %>
+        </li>
+        <li>
+          <%= link_to("レポート一覧", "/reports/index") %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to("About", "/about") %>
+        </li>
+      <% end %>
+    </div>
+  </header>
+
+  <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+    <%= yield %>
+  </body>
+</html>

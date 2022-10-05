@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>ToDo List</h1>
+    <%= link_to("新規登録", "/lists/new") %>
+    <% @lists.each do |list| %>
+        <div class="lists-container">
+            <%= list.content %>
+            <div class="list-time">
+                <%= list.updated_at.strftime("%Y-%m-%d %H:%M")%>
+            </div>
+            <div class="list-btn">   
+                <%= link_to("削除", "/lists/#{list.id}/destroy", {method: "post"}) %>
+                <%= link_to("編集", "/lists/#{list.id}/edit") %>
+            </div>
+            
+        </div>
+    <% end %>
+</div>

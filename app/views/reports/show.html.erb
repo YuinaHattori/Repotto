@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>レポート詳細</h1>
+
+    <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
+        <%= link_to("確認済みを解除する", "/checks/#{@report.id}/destroy", {method: "post"}) %>
+    <% else %>
+        <%= link_to("確認済みにする", "/checks/#{@report.id}/create", {method: "post"}) %>
+    <% end %>
+    <%= @checks_count %> / <%= @users_count %>
+    <div class="lists-container">
+        <h2>題名：<%= @report.title %></h2>
+        <div class="create-user">
+            <p>投稿者：<%= @report.user.name %></p>
+        </div>
+        <div class="report-content">
+            <p>内容<br><%= @report.content %></p>
+        </div>
+        <div class="lists-btn">
+            <% if @report.user_id == @current_user.id %>
+                <%= link_to("削除", "/reports/#{@report.id}/destroy", {method: "post"}) %>
+                <%= link_to("編集", "/reports/#{@report.id}/edit") %>
+            <% end %>
+        </div>
+    </div>
+</div>

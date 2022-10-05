@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>レポート編集</h1>
+    <%= form_tag("/reports/#{@report.id}/update") do %>
+        <p>タイトル</p>
+        <input name="title" value="<%= @report.title%>">
+        <p>内容</p>
+        <textarea name="content"><%=@report.content%></textarea>
+        <input type="submit" value="変更する">
+    <% end %>
+</div>

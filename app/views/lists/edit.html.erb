@@ -1,0 +1,7 @@
+<div class="container">
+    <h1>編集</h1>
+    <%= form_tag("/lists/#{@list.id}/update") do%>
+        <textarea name = "content"><%= @list.content %></textarea>
+        <input type = "submit" value = "更新する">
+    <% end %>
+</div>
