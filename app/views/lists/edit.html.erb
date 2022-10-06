@@ -1,7 +1,17 @@
-<div class="container">
-    <h1>編集</h1>
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>編集</h2>
+        </div>
+    </div>
     <%= form_tag("/lists/#{@list.id}/update") do%>
-        <textarea name = "content"><%= @list.content %></textarea>
-        <input type = "submit" value = "更新する">
+        <div class="col-md-8 order-md-1 container">
+            <div class="mb-3">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" name="content"><%= @list.content %></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">更新する</button>
+        </div>
     <% end %>
-</div>
+</body>

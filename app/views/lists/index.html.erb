@@ -1,17 +1,24 @@
-<div class="container">
-    <h1>ToDo List</h1>
-    <%= link_to("新規登録", "/lists/new") %>
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>ToDo List</h2>
+        </div>
+    </div>
+    <div class="col-md-3 order-md-1 container">
+        <%= link_to("新規登録", "/lists/new", {class: "btn btn-primary btn-lg btn-block"}) %>
+    </div>
     <% @lists.each do |list| %>
-        <div class="lists-container">
-            <%= list.content %>
-            <div class="list-time">
-                <%= list.updated_at.strftime("%Y-%m-%d %H:%M")%>
+        <div class="my-3 p-3 bg-white rounded shadow-sm container">
+            <div class="text-muted pt-3">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark"><%= list.content %></strong>  
+                </div>
+                <div class="text-right">
+                    <%= link_to("削除", "/lists/#{list.id}/destroy", {method: "post"}) %>
+                    <%= link_to("編集", "/lists/#{list.id}/edit") %>
+                    <span class="d-block"><%= list.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                </div>
             </div>
-            <div class="list-btn">   
-                <%= link_to("削除", "/lists/#{list.id}/destroy", {method: "post"}) %>
-                <%= link_to("編集", "/lists/#{list.id}/edit") %>
-            </div>
-            
         </div>
     <% end %>
-</div>
+</body>

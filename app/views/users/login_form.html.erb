@@ -1,11 +1,33 @@
-<div class="container">
-    <h1>ログイン</h1>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>ログイン</h2>
+        </div>
+    </div>
     <%= form_tag("/login") do %>
-        <p>メールアドレス</p>
-        <input name="email" value="<%= @email %>">
-        <p>パスワード</p>
-        <input type="password" name="password" value="<%= @password %>">
-        <input type="submit" value="ログインする" class="btn login">
+        <div class="col-md-8 order-md-1 container">
+            <div class="mb-3">
+                <label for="email">メールアドレス</label>
+                <input class="form-control" name="email" placeholder="you@example.com" value="<%= @email %>">
+                <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password">パスワード</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" value="<%= @password %>">
+                <div class="invalid-feedback">
+                    Please enter your shipping password.
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-lg btn-block" type="submit">ログインする</button>   
+        </div>
     <% end %>
-    <%= link_to("新規ユーザー登録はこちら", "/signup") %>
-</div>
+    <div class="py-5 text-center">
+        <%= link_to("新規ユーザー登録はこちら", "/signup") %>
+    </div>
+
+</body>

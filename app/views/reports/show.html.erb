@@ -1,25 +1,32 @@
-<div class="container">
-    <h1>レポート詳細</h1>
-
-    <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
-        <%= link_to("確認済みを解除する", "/checks/#{@report.id}/destroy", {method: "post"}) %>
-    <% else %>
-        <%= link_to("確認済みにする", "/checks/#{@report.id}/create", {method: "post"}) %>
-    <% end %>
-    <%= @checks_count %> / <%= @users_count %>
-    <div class="lists-container">
-        <h2>題名：<%= @report.title %></h2>
-        <div class="create-user">
-            <p>投稿者：<%= @report.user.name %></p>
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Title:<%= @report.title %></h2>
         </div>
-        <div class="report-content">
-            <p>内容<br><%= @report.content %></p>
-        </div>
-        <div class="lists-btn">
-            <% if @report.user_id == @current_user.id %>
-                <%= link_to("削除", "/reports/#{@report.id}/destroy", {method: "post"}) %>
-                <%= link_to("編集", "/reports/#{@report.id}/edit") %>
-            <% end %>
+        <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
+            <%= link_to("確認済みを解除する", "/checks/#{@report.id}/destroy", {method: "post"}) %>
+        <% else %>
+            <%= link_to("確認済みにする", "/checks/#{@report.id}/create", {method: "post"}) %>
+        <% end %>
+        <%= @checks_count %>/<%= @users_count %>
+    </div>
+    <div class="container countainer-mdiv.container-m bg-white rounded shadow-sm container p-3">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+                <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{@report.user.image_name}" %>" >
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+                <div class=" right show"style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+                    <h4 class="popover-title">投稿者：<%= @report.user.name %></h4>
+                    <div class="popover-content">
+                        <%= @report.content %>
+                    </div>
+                    <% if @report.user_id == @current_user.id %>
+                        <%= link_to("編集", "/reports/#{@report.id}/edit", {class: "d-block text-right"}) %>
+                        <%= link_to("削除", "/reports/#{@report.id}/destroy", {method: "post", class: "d-block text-right"}) %>
+                    <% end %>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</body>

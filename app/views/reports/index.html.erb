@@ -1,15 +1,29 @@
-<div class="container">
-    <h1>レポート一覧</h1>
-    <%= link_to("新規投稿", "/reports/new") %>
-    <% @reports.each do |report| %>
-        <p>投稿者：<%= report.user.name %></p>
-        <p>タイトル</p>
-        <%= link_to(report.title, "/reports/#{report.id}") %>
 
-        <% if Check.find_by(user_id: @current_user.id, report_id: report.id) %>
-            <p>確認済み</p>
-        <% else %>       
-            <p>確認未</p>       
-        <% end %>
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Report</h2>
+        </div>
+    </div>
+    <div class="col-md-3 order-md-1 container">
+        <%= link_to("新規投稿", "/reports/new", {class: "btn btn-primary btn-lg btn-block"}) %>
+    </div>
+    <% @reports.each do |report| %>
+        <div class="my-3 bg-white rounded shadow-sm container">
+            <div class="text-muted">
+                <div class="justify-content-between align-items-center w-100">
+                    <%= link_to(report.title, "/reports/#{report.id}", {class: "text-gray-dark h5"}) %>
+                    <span class="d-block">投稿者：<%= report.user.name %></span>
+                </div>
+                <div class="text-right">
+                    <span class="d-block"><%= report.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                    <% if Check.find_by(user_id: @current_user.id, report_id: report.id) %>
+                        <span class="d-block">確認済み</span>
+                    <% else %>       
+                        <span class="d-block">確認未</span>       
+                    <% end %>
+                </div>
+            </div>
+        </div>
     <% end %>
-</div>
+</body>

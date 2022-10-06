@@ -1,11 +1,33 @@
-<div class="container">
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>ユーザー情報の変更</h2>
+        </div>
+    </div>
+
     <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
-        <p>ユーザー名</p>
-        <input name="name" value="<%= @user.name %>">
-        <p>画像</p>
-        <input name="image" type="file">
-        <p>メールアドレス</p>
-        <input name="email" value="<%= @user.email %>">
-        <input type="submit" value="変更する">
+        <div class="col-md-8 order-md-1 container">
+            <div class="mb-3">
+                <label for="username">ユーザー名</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="Username" name="name" value="<%= @user.name %>">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="img">プロフィール画像</label>
+                <div class="input-group">
+                    <input class="form-control" id="img" placeholder="img" name="image" type="file">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email">メールアドレス</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="you@example.com" name="email" value="<%= @user.email %>">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">変更する</button>
+        </div>
     <% end %>
-</div>
+</body>
