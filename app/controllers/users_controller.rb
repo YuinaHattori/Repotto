@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def update
-      @user=User.find(params[:id])
+      @user = User.find_by(id: params[:id])
       @user.name = params[:name]
       @user.email = params[:email]
       if params[:image]
@@ -72,5 +72,7 @@ class UsersController < ApplicationController
       end
       @user.save
       redirect_to("/users/#{@user.id}")
+
+
     end
   end
