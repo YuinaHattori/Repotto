@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
         @user = User.find_by(id: @report.user_id)
         @checks_count = Check.where(report_id: @report.id).count
         @users_count = User.all.count
+        @comments = Comment.where(report_id: @report.id)
     end
 
     def new

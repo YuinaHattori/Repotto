@@ -29,4 +29,34 @@
             </div>
         </div>
     </div>
+    <%= form_tag("/comments/#{@report.id}/create") do %>
+        <div class="col-md-8 order-md-1 container"> 
+            <div class="mb-3">
+                <label for="content">内容</label>
+                <div class="input-group">
+                    <textarea type="text" class="form-control" placeholder="Comment" name="comment"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">コメントする</button>
+        </div>
+    <% end %>
+
+    <% @comments.each do |comment| %>
+        <div class="my-3 p-3 bg-white rounded shadow-sm container">
+            <div class="media text-muted pt-3">
+                <div class="mr-2 rounded col-md-1">
+                    <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{comment.user.image_name}" %>">
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center w-100">
+                
+                    <%= comment.user.name %><br />
+                    <%= comment.comment %>
+                    <div class="text-right">
+                        <span class="d-block"><%= comment.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
 </body>

@@ -32,11 +32,5 @@ Rails.application.routes.draw do
   post 'checks/:report_id/create' => "checks#create"
   post 'checks/:report_id/destroy' => "checks#destroy"
   
-  #resources :messages, only: [:create]
-  #resources :rooms, only: [:create,:show]
-
-  post 'messages/create' => "checks#create"
-
-  get 'rooms/1' => "rooms#show"
-  post 'rooms/create' => "reports#create"
+  post 'comments/:report_id/create' => "comments#create"
 end
