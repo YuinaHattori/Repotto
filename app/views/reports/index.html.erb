@@ -9,11 +9,11 @@
         <%= link_to("新規投稿", "/reports/new", {class: "btn btn-primary btn-lg btn-block"}) %>
     </div>
     <% @reports.each do |report| %>
-        <div class="my-3 bg-white rounded shadow-sm container">
+        <div class="my-3 p-2 bg-white rounded border border-secondary container">
             <div class="text-muted">
                 <div class="justify-content-between align-items-center w-100">
-                    <%= link_to(report.title, "/reports/#{report.id}", {class: "text-gray-dark h5"}) %>
                     <span class="d-block">投稿者：<%= report.user.name %></span>
+                    <%= link_to(report.title, "/reports/#{report.id}", {class: "text-gray-dark h5 report-title"}) %>
                 </div>
                 <div class="text-right">
                     <span class="d-block"><%= report.updated_at.strftime("%Y-%m-%d %H:%M")%></span>

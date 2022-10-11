@@ -1,24 +1,20 @@
 <body class="bg-light">
     <div class="container">
         <div class="py-5 text-center">
-            <h2>Title:<%= @report.title %></h2>
+            <h2>レポート詳細</h2>
         </div>
-        <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
-            <%= link_to("確認済みを解除する", "/checks/#{@report.id}/destroy", {method: "post"}) %>
-        <% else %>
-            <%= link_to("確認済みにする", "/checks/#{@report.id}/create", {method: "post"}) %>
-        <% end %>
-        <%= @checks_count %>/<%= @users_count %>
+        
     </div>
-    <div class="container countainer-mdiv.container-m bg-white rounded shadow-sm container p-3">
+    <div class="container countainer-mdiv.container-m bg-white rounded border border-secondary container p-3">
         <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
                 <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{@report.user.image_name}" %>" >
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
-                <div class=" right show"style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
-                    <h4 class="popover-title">投稿者：<%= @report.user.name %></h4>
-                    <div class="popover-content">
+                <div class=" right show" style="position:relative; top=-90px; left=100px; max-width:100%; display:inline;">
+                    <h4>Title:<%= @report.title %></h4>
+                    <h5>投稿者：<%= @report.user.name %></h5>
+                    <div class="text-wrap">
                         <%= @report.content %>
                     </div>
                     <% if @report.user_id == @current_user.id %>
@@ -29,29 +25,42 @@
             </div>
         </div>
     </div>
+    <div class="container p-3 text-right">
+        <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
+            <%= link_to("確認済み", "/checks/#{@report.id}/destroy", {method: "post", class: "btn btn-success"}) %>
+        <% else %>
+            <%= link_to("未確認", "/checks/#{@report.id}/create", {method: "post", class: "btn btn-secondary"}) %>
+        <% end %>
+        <%= @checks_count %>/<%= @users_count %>  
+    </div>
+    <div class="container">
     <%= form_tag("/comments/#{@report.id}/create") do %>
-        <div class="col-md-8 order-md-1 container"> 
+         
             <div class="mb-3">
-                <label for="content">内容</label>
+                <label for="content">コメント</label>
                 <div class="input-group">
                     <textarea type="text" class="form-control" placeholder="Comment" name="comment"></textarea>
                 </div>
             </div>
             <button class="btn btn-primary btn-lg btn-block" type="submit">コメントする</button>
-        </div>
+        
     <% end %>
+    </div>
+ 
 
     <% @comments.each do |comment| %>
-        <div class="my-3 p-3 bg-white rounded shadow-sm container">
+        <div class="my-3 p-3 bg-white rounded border border-secondary container">
             <div class="media text-muted pt-3">
                 <div class="mr-2 rounded col-md-1">
                     <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{comment.user.image_name}" %>">
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center w-100">
-                
+                <div class="d-flex justify-content-between align-items-center w-100 ">
+                <div class="text-wrap  ">
                     <%= comment.user.name %><br />
+                    
                     <%= comment.comment %>
+                    </div>
                     <div class="text-right">
                         <span class="d-block"><%= comment.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
                     </div>

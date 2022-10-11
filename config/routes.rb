@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/' => "home#top"
+  #get '/' => "home#top"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'about' => "home#about"
   get 'index' => "home#index"
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post 'lists/:id/update' => "lists#update"
   post 'lists/:id/destroy' => "lists#destroy"
 
-  get 'login' => "users#login_form"
+  get '/' => "users#login_form"
   post 'login' => "users#login"
   post 'logout' => "users#logout"
   get 'users/index' => "users#index"

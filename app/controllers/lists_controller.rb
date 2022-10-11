@@ -12,7 +12,7 @@ class ListsController < ApplicationController
 
     def index
         @user = User.find_by(id: @current_user.id)
-        @lists = List.where(user_id: @user.id)
+        @lists = List.where(user_id: @user.id).order(date: :asc)
     end
 
     def new
@@ -22,7 +22,8 @@ class ListsController < ApplicationController
     def create
         @list = List.new(
             content: params[:content],
-            user_id: @current_user.id
+            user_id: @current_user.id,
+            date: params[:date]
             )
         @list.save
         redirect_to("/lists/index")

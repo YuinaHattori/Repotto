@@ -3,5 +3,49 @@
         <div class="py-5 text-center">
             <h2>Home</h2>
         </div>
+    
+        <div class="row">
+            <div class="col">
+                <div class="text-center"><%= link_to("Report", "/reports/index", {class: "h4 text-center home-title"}) %></div>
+                <% @reports.each do |report| %>
+                    <div class="my-3 p-2 bg-white rounded container border border-secondary">
+                        <div class="text-muted">
+                            <div class="justify-content-between align-items-center w-100">
+                                <span class="d-block">投稿者：<%= report.user.name %></span>
+                                <%= link_to(report.title, "/reports/#{report.id}", {class: "text-gray-dark h5 report-title"}) %>
+                            </div>
+                            <div class="text-right">
+                                <span class="d-block"><%= report.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                                <% if Check.find_by(user_id: @current_user.id, report_id: report.id) %>
+                                    <span class="d-block">確認済み</span>
+                                <% else %>       
+                                    <span class="d-block">確認未</span>       
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col">
+                <div class="text-center"><%= link_to("TodoList", "/lists/index", {class: "h4 text-center home-title"}) %></div>
+                <% @lists.each do |list| %>
+                    <div class="my-3 p-2 bg-white rounded container border border-secondary">
+                        <div class="text-muted">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <span class="d-block">
+                                    期限：<%= list.date.strftime("%Y年%m月%d日") %><br>
+                                    <p class="h5"><%= list.content %></p>
+                                </span>  
+                            </div>
+                            <div class="text-right">
+                                <%= link_to("削除", "/lists/#{list.id}/destroy", {method: "post"}) %>
+                                <%= link_to("編集", "/lists/#{list.id}/edit") %>
+                                <span class="d-block">  最終更新：<%= list.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
     </div>
 </body>
