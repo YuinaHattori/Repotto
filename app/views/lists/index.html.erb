@@ -11,12 +11,12 @@
         <div class="my-3 p-3 bg-white rounded border border-secondary container">
             <div class="text-muted ">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <span class="d-block">期限：<%= list.date.strftime("%Y年%m月%d日") %><br><%= list.content %></span>  
+                    <span class="d-block">期限：<%= list.date.to_s(:date_jp) %><br><%= list.content %></span>  
                 </div>
                 <div class="text-right">
                     <%= link_to("削除", "/lists/#{list.id}/destroy", {method: "post"}) %>
                     <%= link_to("編集", "/lists/#{list.id}/edit") %>
-                    <span class="d-block">最終更新：<%= list.updated_at.strftime("%Y-%m-%d %H:%M")%></span>
+                    <span class="d-block">最終更新：<%= list.updated_at.to_s(:datetime_jp)%></span>
                 </div>
             </div>
         </div>
