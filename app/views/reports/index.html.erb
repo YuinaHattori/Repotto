@@ -18,7 +18,7 @@
                 <div class="text-right">
                     <span class="d-block"><%= report.updated_at.to_s(:datetime_jp)%></span>
                     <% if Check.find_by(user_id: @current_user.id, report_id: report.id) %>
-                        <span class="d-block">確認済み</span>
+                        <span class="d-block confirmation">確認済み</span>
                     <% else %>       
                         <span class="d-block">確認未</span>       
                     <% end %>

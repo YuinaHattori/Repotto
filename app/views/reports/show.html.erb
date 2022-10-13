@@ -50,20 +50,18 @@
 
     <% @comments.each do |comment| %>
         <div class="my-3 p-3 bg-white rounded border border-secondary container">
-            <div class="media text-muted pt-3">
-                <div class="mr-2 rounded col-md-1">
-                    <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{comment.user.image_name}" %>">
-                </div>
+            <div class="text-muted">
+
 
                 <div class="d-flex justify-content-between align-items-center w-100 ">
-                <div class="text-wrap  ">
+                    <span class="d-block">
                     <%= comment.user.name %><br />
                     
                     <%= comment.comment %>
-                    </div>
-                    <div class="text-right">
-                        <span class="d-block"><%= comment.updated_at.to_s(:datetime_jp)%></span>
-                    </div>
+                    </span>
+                </div>
+                <div class="text-right">
+                    <span class="d-block"><%= comment.updated_at.to_s(:datetime_jp)%></span>
                 </div>
             </div>
         </div>
