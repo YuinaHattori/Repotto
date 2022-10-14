@@ -4,7 +4,7 @@
             <h2>ユーザー詳細</h2>
         </div>
     </div>
-    <div class="container countainer-mdiv.container-m">
+    <div class="container countainer-mdiv.container-m my-3 p-3 bg-white rounded border border-secondary">
         <div class="row">
             <div class="col-md-2  img-hidden">
                 <img class="img-responsive img-circle reviews" src="<%= "/user_images/#{@user.image_name}" %>">
@@ -17,5 +17,8 @@
                 <% end %>
             </div>
         </div>
+    </div>
+    <div class="py-5 text-center">
+        <%= link_to("ユーザー一覧に戻る", "/users/index") %>
     </div>
 </body>

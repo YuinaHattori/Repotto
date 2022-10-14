@@ -33,11 +33,13 @@
         <% end %>
         <%= @checks_count %>/<%= @users_count %>  
     </div>
+    <div class="py-3 text-center">
+        <%= link_to("一覧に戻る", "/reports/index") %>
+    </div>
     <div class="container">
     <%= form_tag("/comments/#{@report.id}/create") do %>
          
             <div class="mb-3">
-                <label for="content">コメント</label>
                 <div class="input-group">
                     <textarea type="text" class="form-control" placeholder="Comment" name="comment"></textarea>
                 </div>
