@@ -29,26 +29,10 @@
         <% if Check.find_by(user_id: @current_user.id, report_id: @report.id) %>
             <%= link_to("確認済み", "/checks/#{@report.id}/destroy", {method: "post", class: "btn btn-success"}) %>
         <% else %>
-            <%= link_to("未確認", "/checks/#{@report.id}/create", {method: "post", class: "btn btn-secondary"}) %>
+            <%= link_to("確認済みにする", "/checks/#{@report.id}/create", {method: "post", class: "btn btn-secondary"}) %>
         <% end %>
         <%= @checks_count %>/<%= @users_count %>  
     </div>
-    <div class="py-3 text-center">
-        <%= link_to("一覧に戻る", "/reports/index") %>
-    </div>
-    <div class="container">
-    <%= form_tag("/comments/#{@report.id}/create") do %>
-         
-            <div class="mb-3">
-                <div class="input-group">
-                    <textarea type="text" class="form-control" placeholder="Comment" name="comment"></textarea>
-                </div>
-            </div>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">コメントする</button>
-        
-    <% end %>
-    </div>
- 
 
     <% @comments.each do |comment| %>
         <div class="my-3 p-3 bg-white rounded border border-secondary container">
@@ -68,4 +52,25 @@
             </div>
         </div>
     <% end %>
+
+
+    <div class="container">
+    <%= form_tag("/comments/#{@report.id}/create") do %>
+         
+            <div class="mb-3">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" placeholder="Comment" name="comment"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">コメントする</button>
+        
+    <% end %>
+    </div>
+
+    <div class="py-3 text-center">
+        <%= link_to("一覧に戻る", "/reports/index") %>
+    </div>
+
+ 
+
 </body>

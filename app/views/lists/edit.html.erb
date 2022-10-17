@@ -7,6 +7,13 @@
     <%= form_tag("/lists/#{@list.id}/update") do%>
         <div class="col-md-8 order-md-1 container">
             <div class="mb-3">
+                <label for="title">期限</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" name="date" value="<%= @list.date.to_s(:date) %>">
+                </div>
+            </div>
+
+            <div class="mb-3">
                 <div class="input-group">
                     <textarea type="text" class="form-control" name="content"><%= @list.content %></textarea>
                 </div>

@@ -36,6 +36,7 @@ class ListsController < ApplicationController
     def update
         @list = List.find_by(id: params[:id])
         @list.content = params[:content]
+        @list.date = params[:date]
         @list.save
         redirect_to("/lists/index")
     end
